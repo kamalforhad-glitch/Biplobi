@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { BookOpen, ArrowRight, ChevronRight, Clock, User } from "lucide-react";
 import { publicationsData, PublicationItem } from "@/data/culturalData";
 import { Modal } from "../ui/Modal";
@@ -19,13 +20,13 @@ export function PublicationsNews() {
             <span className="w-7 h-0.5 sm:h-1 bg-[#9E1B22] rounded-full inline-block ml-3 opacity-90" />
           </h3>
         </div>
-        <button
-          onClick={() => setSelectedPub(publicationsData[0])}
+        <Link
+          href="/publications"
           className="text-xs sm:text-sm font-semibold text-[#9E1B22] hover:text-[#7A1319] flex items-center gap-1 group cursor-pointer"
         >
           <span>সব দেখুন</span>
           <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-        </button>
+        </Link>
       </div>
 
       {/* 3 Horizontal Editorial List Cards */}

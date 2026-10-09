@@ -73,14 +73,14 @@ export interface PublicationItem {
 }
 
 export const navigationLinks = [
-  { label: "হোম", href: "#home" },
-  { label: "আমাদের সম্পর্কে", href: "#about" },
-  { label: "কার্যক্রম", href: "#programs" },
-  { label: "ইভেন্ট", href: "#events" },
-  { label: "প্রকাশনা", href: "#publications" },
-  { label: "মিডিয়া", href: "#media" },
-  { label: "সদস্য হন", href: "#membership" },
-  { label: "যোগাযোগ", href: "#contact" },
+  { label: "হোম", href: "/" },
+  { label: "আমাদের সম্পর্কে", href: "/about" },
+  { label: "কার্যক্রম", href: "/activities" },
+  { label: "ইভেন্ট", href: "/events" },
+  { label: "প্রকাশনা", href: "/publications" },
+  { label: "মিডিয়া", href: "/media" },
+  { label: "সদস্য হন", href: "/membership" },
+  { label: "যোগাযোগ", href: "/contact" },
 ];
 
 export const programsData: Program[] = [

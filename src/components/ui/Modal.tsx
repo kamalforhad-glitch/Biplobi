@@ -8,17 +8,22 @@ interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   title?: string;
+  subtitle?: string;
   children: React.ReactNode;
   maxWidth?: "sm" | "md" | "lg" | "xl" | "2xl";
+  size?: "sm" | "md" | "lg" | "xl" | "2xl";
 }
 
 export function Modal({
   isOpen,
   onClose,
   title,
+  subtitle,
   children,
-  maxWidth = "lg",
+  maxWidth,
+  size = "lg",
 }: ModalProps) {
+  const resolvedMaxWidth = maxWidth || size;
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -66,7 +71,7 @@ export function Modal({
         aria-labelledby={title ? "modal-title" : undefined}
         className={clsx(
           "relative w-full bg-[#FFFDF9] rounded-2xl border border-[#E6DCD1] shadow-[0_20px_50px_rgba(25,18,10,0.2)] p-6 sm:p-8 z-10 my-8 transition-all duration-300 transform scale-100",
-          maxWidthClasses[maxWidth]
+          maxWidthClasses[resolvedMaxWidth]
         )}
       >
         <button
@@ -86,6 +91,11 @@ export function Modal({
               <span>{title}</span>
               <span className="w-6 h-1 bg-[#9E1B22] rounded-full inline-block" />
             </h3>
+            {subtitle && (
+              <p className="text-xs sm:text-sm text-[#736B63] font-bengali mt-1">
+                {subtitle}
+              </p>
+            )}
           </div>
         )}
 

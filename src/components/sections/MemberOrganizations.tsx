@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { Users, ArrowRight, Drama, Music, Palette, Drum, BookOpen } from "lucide-react";
 import { memberWingsData, MemberWing } from "@/data/culturalData";
 import { Modal } from "../ui/Modal";
@@ -57,13 +58,13 @@ export function MemberOrganizations({ onJoinClick }: { onJoinClick: () => void }
             <span className="w-7 h-0.5 sm:h-1 bg-[#9E1B22] rounded-full inline-block ml-3 opacity-90" />
           </h3>
         </div>
-        <button
-          onClick={onJoinClick}
+        <Link
+          href="/membership"
           className="text-xs sm:text-sm font-semibold text-[#9E1B22] hover:text-[#7A1319] flex items-center gap-1 group cursor-pointer"
         >
           <span>সব দেখুন</span>
           <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-        </button>
+        </Link>
       </div>
 
       {/* Grid of 6 Cultural Wings matching reference single row layout */}

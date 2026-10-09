@@ -2,36 +2,29 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { UserPlus, Menu, X } from "lucide-react";
 import { navigationLinks } from "@/data/culturalData";
 import { Container } from "./Container";
 import { Button } from "../ui/Button";
 
 interface HeaderProps {
-  onJoinClick: () => void;
+  onJoinClick?: () => void;
 }
 
 export function Header({ onJoinClick }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+  const pathname = usePathname();
+
+  const isLinkActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname === href || pathname.startsWith(href + "/");
+  };
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-
-      // Active section detection
-      const sections = ["home", "about", "programs", "areas", "events", "media", "publications", "contact"];
-      for (const section of sections.reverse()) {
-        const el = document.getElementById(section);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 120) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -50,7 +43,7 @@ export function Header({ onJoinClick }: HeaderProps) {
         <div className="flex items-center justify-between h-18 sm:h-22 gap-2 w-full">
           {/* Logo & Organization Name */}
           <Link
-            href="#home"
+            href="/"
             className="flex items-center gap-2 sm:gap-3 group cursor-pointer shrink-0 min-w-max"
           >
             {/* Handcrafted Cultural Emblem */}
@@ -115,8 +108,7 @@ export function Header({ onJoinClick }: HeaderProps) {
           {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1.5 shrink-0">
             {navigationLinks.map((link) => {
-              const linkId = link.href.replace("#", "");
-              const isActive = activeSection === linkId;
+              const isActive = isLinkActive(link.href);
 
               return (
                 <Link
@@ -140,16 +132,18 @@ export function Header({ onJoinClick }: HeaderProps) {
           {/* Right Action CTA & Mobile Toggle */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <div className="hidden sm:block">
-              <Button
-                variant="primary"
-                size="sm"
-                icon={<UserPlus className="w-4 h-4" />}
-                iconPosition="left"
-                onClick={onJoinClick}
-                className="text-xs sm:text-sm font-semibold px-4 sm:px-5 py-1.5 sm:py-2 shadow-xs shrink-0"
-              >
-                যুক্ত হন
-              </Button>
+              <Link href="/membership">
+                <Button
+                  variant="primary"
+                  size="sm"
+                  icon={<UserPlus className="w-4 h-4" />}
+                  iconPosition="left"
+                  onClick={onJoinClick}
+                  className="text-xs sm:text-sm font-semibold px-4 sm:px-5 py-1.5 sm:py-2 shadow-xs shrink-0"
+                >
+                  যুক্ত হন
+                </Button>
+              </Link>
             </div>
 
             {/* Mobile / Tablet Hamburger Button */}
@@ -169,8 +163,7 @@ export function Header({ onJoinClick }: HeaderProps) {
         <div className="lg:hidden bg-[#FAF6F0] border-b border-[#E6DCD1] px-4 pt-3 pb-6 animate-in slide-in-from-top duration-200">
           <nav className="flex flex-col space-y-1.5">
             {navigationLinks.map((link) => {
-              const linkId = link.href.replace("#", "");
-              const isActive = activeSection === linkId;
+              const isActive = isLinkActive(link.href);
 
               return (
                 <Link
@@ -191,18 +184,17 @@ export function Header({ onJoinClick }: HeaderProps) {
           </nav>
 
           <div className="mt-4 pt-4 border-t border-[#E6DCD1]">
-            <Button
-              variant="primary"
-              size="md"
-              icon={<UserPlus className="w-4 h-4" />}
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onJoinClick();
-              }}
-              className="w-full text-base font-semibold"
-            >
-              যুক্ত হন
-            </Button>
+            <Link href="/membership" onClick={() => setMobileMenuOpen(false)}>
+              <Button
+                variant="primary"
+                size="md"
+                icon={<UserPlus className="w-4 h-4" />}
+                onClick={onJoinClick}
+                className="w-full text-base font-semibold"
+              >
+                যুক্ত হন
+              </Button>
+            </Link>
           </div>
         </div>
       )}

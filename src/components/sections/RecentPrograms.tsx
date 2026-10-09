@@ -17,8 +17,7 @@ export function RecentPrograms() {
         <SectionHeading
           title="সাম্প্রতিক কার্যক্রম"
           linkText="সব কার্যক্রম দেখুন"
-          linkHref="#programs"
-          onLinkClick={() => {}}
+          linkHref="/activities"
         />
 
         {/* 4 Cards in a Row on Desktop */}

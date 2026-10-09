@@ -25,9 +25,9 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-[#2C2925]">
           {/* Col 1: Brand & Mission Statement (4 cols) */}
           <div className="lg:col-span-4 flex flex-col items-start">
-            <div className="flex items-center gap-3.5 mb-4">
+            <Link href="/" className="flex items-center gap-3.5 mb-4 group cursor-pointer">
               {/* Circular Emblem */}
-              <div className="w-13 h-13 rounded-full bg-gradient-to-br from-[#FFFDF9] to-[#F5ECE0] p-1 border-2 border-[#9E1B22] flex items-center justify-center shrink-0">
+              <div className="w-13 h-13 rounded-full bg-gradient-to-br from-[#FFFDF9] to-[#F5ECE0] p-1 border-2 border-[#9E1B22] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                 <svg
                   viewBox="0 0 100 100"
                   className="w-full h-full"
@@ -50,14 +50,14 @@ export function Footer() {
               </div>
 
               <div>
-                <h3 className="text-xl font-bold text-white font-serif-bengali tracking-tight">
+                <h3 className="text-xl font-bold text-white font-serif-bengali tracking-tight group-hover:text-[#FCA5A5] transition-colors">
                   বিপ্লবী সাংস্কৃতিক ঐক্য
                 </h3>
                 <p className="text-xs text-[#BA252D] font-medium tracking-wide">
                   অন্যায়ের বিরুদ্ধে আজীবন
                 </p>
               </div>
-            </div>
+            </Link>
 
             <p className="text-sm text-[#A89E92] leading-relaxed max-w-sm mt-2">
               বাঙালির হাজার বছরের সমৃদ্ধ লোকসংস্কৃতি, মুক্তচিন্তা ও প্রগতিশীল মানবিক মূল্যবোধ চর্চার একটি অবিচল জাতীয় প্ল্যাটফর্ম।
@@ -72,11 +72,11 @@ export function Footer() {
             </h4>
             <ul className="space-y-2.5 text-sm text-[#A89E92]">
               {[
-                { label: "হোম", href: "#home" },
-                { label: "আমাদের সম্পর্কে", href: "#about" },
-                { label: "কার্যক্রম", href: "#programs" },
-                { label: "ইভেন্ট", href: "#events" },
-                { label: "যোগাযোগ", href: "#contact" },
+                { label: "হোম", href: "/" },
+                { label: "আমাদের সম্পর্কে", href: "/about" },
+                { label: "কার্যক্রম", href: "/activities" },
+                { label: "ইভেন্ট", href: "/events" },
+                { label: "যোগাযোগ", href: "/contact" },
               ].map((item) => (
                 <li key={item.label}>
                   <Link
@@ -105,7 +105,9 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-[#BA252D] shrink-0" />
-                <span>+৮৮০ ১৭১২-৩৪৫৬৭৮</span>
+                <a href="tel:+8801712345678" className="hover:text-white transition-colors font-mono text-xs sm:text-sm">
+                  +880 1712-345678
+                </a>
               </li>
               <li className="flex items-center gap-2.5">
                 <MapPin className="w-4 h-4 text-[#BA252D] shrink-0" />
